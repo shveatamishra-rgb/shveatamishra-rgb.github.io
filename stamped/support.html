@@ -40,13 +40,6 @@
   <p>Have a question, a bug, or an idea? Send us a message and we'll get back to you.</p>
 
   <form id="contact">
-    <label for="app">App</label>
-    <select id="app" name="app" required>
-      <option value="Stamped" selected>Stamped</option>
-      <option value="DropBeam">DropBeam</option>
-      <option value="Other">Other</option>
-    </select>
-
     <label for="reason">What's this about?</label>
     <select id="reason" name="reason" required>
       <option value="App Related Issue">App Related Issue</option>
@@ -92,9 +85,8 @@
       send.disabled = true; status.textContent = 'Sending…'; status.className = 'status';
       const payload = {
         access_key: 'ce40218b-73be-4e2b-ac6c-4dfed6a73384',
-        subject: form.app.value + ' — ' + form.reason.value,
-        from_name: form.app.value + ' Support',
-        app: form.app.value,
+        subject: 'Stamped: ' + form.reason.value,
+        from_name: 'Stamped Support',
         reason: form.reason.value,
         name: form.name.value,
         email: form.email.value,
