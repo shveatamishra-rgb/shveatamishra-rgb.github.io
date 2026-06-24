@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Duplicate Media Cleaner — Support</title>
+<style>
+  :root { color-scheme: light dark; }
+  body { font: 17px/1.6 -apple-system, system-ui, sans-serif; max-width: 640px;
+         margin: 0 auto; padding: 48px 24px; color: #1c2c24; background: #f5efe0; }
+  h1 { font-size: 28px; color: #14321f; }
+  h2 { font-size: 19px; margin-top: 2em; color: #14321f; }
+  a { color: #845321; }
+  .muted { color: #5f6e64; }
+  label { display: block; font-size: 14px; font-weight: 500; margin: 16px 0 6px; }
+  input, select, textarea {
+    width: 100%; box-sizing: border-box; font: inherit; padding: 10px 12px;
+    border: 1px solid #cbb994; border-radius: 8px; background: #fffdf7; color: #1c2c24;
+  }
+  textarea { min-height: 130px; resize: vertical; }
+  button {
+    margin-top: 18px; font: inherit; font-weight: 600; padding: 11px 20px; cursor: pointer;
+    border: none; border-radius: 8px; background: #845321; color: #fff;
+  }
+  button:disabled { opacity: .6; cursor: default; }
+  .status { margin-top: 14px; font-size: 15px; }
+  .ok { color: #1d6e2a; } .err { color: #a3322a; }
+  .hp { position: absolute; left: -9999px; }
+  @media (prefers-color-scheme: dark) {
+    body { color: #e9efe9; background: #122c1c; }
+    h1, h2 { color: #d2a93a; } a { color: #d2a93a; } .muted { color: #aab9af; }
+    input, select, textarea { background: #173823; color: #e9efe9; border-color: #2f5a40; }
+    button { background: #d2a93a; color: #11271a; }
+    .ok { color: #7fd08a; } .err { color: #f0a59a; }
+  }
+</style>
+</head>
+<body>
+  <h1>Duplicate Media Cleaner — Support</h1>
+  <p>Have a question, a bug, or an idea? Send us a message and we'll get back to you.</p>
+
+  <form id="contact">
+    <label for="reason">What's this about?</label>
+    <select id="reason" name="reason" required>
+      <option value="App Related Issue">App Related Issue</option>
+      <option value="Feedback">Feedback</option>
+      <option value="New Feature Request">New Feature Request</option>
+    </select>
+
+    <label for="name">Your name</label>
+    <input type="text" id="name" name="name" autocomplete="name" required>
+
+    <label for="email">Your email</label>
+    <input type="email" id="email" name="email" autocomplete="email" required>
+
+    <label for="message">Message</label>
+    <textarea id="message" name="message" placeholder="Tell us what's going on. For bugs, please include your macOS version." required></textarea>
+
+    <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off">
+    <button type="submit" id="send">Send message</button>
+    <div class="status" id="status" role="status" aria-live="polite"></div>
+  </form>
+
+  <h2>Prefer email?</h2>
+  <p>Write to <a href="mailto:macosapps.help@outlook.com?subject=Duplicate%20Media%20Cleaner%20Support">macosapps.help@outlook.com</a>.</p>
+
+  <h2>Quick answers</h2>
+  <p><strong>Does it delete my files?</strong> No. Moving a duplicate sends it to the macOS
+  Trash, where you can restore it.</p>
+  <p><strong>Are my photos uploaded?</strong> No. All scanning happens on your Mac.</p>
+  <p><strong>What's the difference between Exact, Look-alike, and Similar?</strong> Exact
+  matches identical bytes (images and videos). Look-alike matches images that decode to the
+  same pixels across formats. Similar finds near-duplicate photos within an adjustable match
+  percentage.</p>
+
+  <p class="muted"><a href="./privacy.html">Privacy Policy</a> ·
+  <a href="./terms.html">Terms of Use</a> · <a href="./">Duplicate Media Cleaner legal</a></p>
+
+  <script>
+    const form = document.getElementById('contact');
+    const status = document.getElementById('status');
+    const send = document.getElementById('send');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (form.botcheck && form.botcheck.checked) return;
+      send.disabled = true; status.textContent = 'Sending…'; status.className = 'status';
+      const payload = {
+        access_key: 'ce40218b-73be-4e2b-ac6c-4dfed6a73384',
+        subject: 'Duplicate Media Cleaner: ' + form.reason.value,
+        from_name: 'Duplicate Media Cleaner Support',
+        reason: form.reason.value,
+        name: form.name.value,
+        email: form.email.value,
+        message: form.message.value
+      };
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+        if (data.success) {
+          form.reset();
+          status.textContent = 'Thanks! Your message was sent. We will reply to your email.';
+          status.className = 'status ok';
+        } else {
+          status.textContent = 'Sorry, something went wrong. Please email us instead.';
+          status.className = 'status err';
+        }
+      } catch (err) {
+        status.textContent = 'Network error. Please email macosapps.help@outlook.com instead.';
+        status.className = 'status err';
+      } finally {
+        send.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>
