@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Google discontinued Android File Transfer. What to use instead on your Mac (2026)</title>
+<meta name="description" content="Android File Transfer no longer works on modern macOS and Google discontinued it in 2024. Here are the real alternatives in 2026: cable with OpenMTP, cloud, and local Wi-Fi transfer, compared honestly.">
+<meta property="og:title" content="Google discontinued Android File Transfer. What to use instead on your Mac">
+<meta property="og:description" content="The honest guide to moving files from an Android phone to a Mac now that Android File Transfer is gone.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://shveatamishra-rgb.github.io/dropbeam/android-file-transfer-alternative.html">
+<link rel="canonical" href="https://shveatamishra-rgb.github.io/dropbeam/android-file-transfer-alternative.html">
+<style>
+:root{--ink:#0d0d10;--card:#16161b;--line:#24242c;--gold:#d8b04d;--gold2:#e7c877;--text:#e9e7e2;--muted:#9a978f}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ink);color:var(--text);font:17px/1.72 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--gold)}a:hover{color:var(--gold2)}
+.wrap{max-width:720px;margin:0 auto;padding:0 24px}
+header{display:flex;align-items:center;justify-content:space-between;padding:20px 24px;max-width:960px;margin:0 auto}
+.brand{display:flex;align-items:center;gap:11px;font-weight:700;font-size:18px;color:var(--text);text-decoration:none}
+.logo{width:34px;height:34px;border-radius:9px;background:linear-gradient(160deg,#23232a,#0e0e12);display:flex;align-items:center;justify-content:center;color:var(--gold);font-weight:800;border:1px solid var(--line)}
+.btn{display:inline-block;background:var(--gold);color:#1a1406;font-weight:700;padding:11px 20px;border-radius:10px;font-size:15px;text-decoration:none}
+.btn:hover{background:var(--gold2);color:#1a1406}
+article{padding:26px 0 40px}
+h1{font-size:clamp(28px,5vw,40px);line-height:1.14;letter-spacing:-.4px;margin:10px 0 8px}
+.meta{color:var(--muted);font-size:14px;margin-bottom:30px}
+h2{font-size:24px;margin:38px 0 10px;letter-spacing:-.2px}
+p{margin:16px 0}
+ol,ul{padding-left:22px}
+li{margin:10px 0}
+.callout{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:12px;padding:20px 22px;margin:32px 0}
+.callout p{margin:0 0 10px}
+.callout p:last-child{margin:0}
+footer{border-top:1px solid var(--line);padding:30px 24px 46px;text-align:center;color:var(--muted);font-size:14px}
+footer a{margin:0 9px}
+</style></head>
+<body>
+
+<header>
+  <a class="brand" href="./"><span class="logo">&#8645;</span> DropBeam</a>
+  <a class="btn" href="https://apps.apple.com/app/id6780014112">Mac App Store</a>
+</header>
+
+<div class="wrap">
+<article>
+  <h1>Google discontinued Android File Transfer. Here is what to use instead on your Mac.</h1>
+  <p class="meta">Updated July 2026</p>
+
+  <p>Android File Transfer was never loved, but it worked. In 2024 Google quietly discontinued it, the download page went away, and on recent versions of macOS it often fails to detect the phone at all. If you are here because it stopped working, you are not alone: there is no official replacement.</p>
+
+  <h2>What actually happened</h2>
+  <p>Google retired its desktop transfer utility for Mac in mid 2024 and pointed users toward cloud services instead. Nothing first-party fills the gap. Quick Share for Windows exists, but there is no Google-made option for macOS.</p>
+
+  <h2>Your real options in 2026</h2>
+  <p><strong>1. Cable plus a third-party MTP app.</strong> OpenMTP is free and open source and works well when the connection cooperates. Cables are fastest for a huge one-time migration, but MTP on macOS remains finicky, and every macOS update is a new adventure.</p>
+  <p><strong>2. Cloud round trips.</strong> Upload from the phone to Google Drive or Photos, wait, download on the Mac, delete from the cloud if you care about space. It works, it is slow, your photos take a detour through a data center, and compressed exports can quietly lose quality.</p>
+  <p><strong>3. Local Wi-Fi transfer.</strong> The phone and the Mac talk directly over your own network. Nothing round-trips through a server, full-size files arrive as recorded, and no cable is involved. This is where most people should land, and it is why I built DropBeam.</p>
+
+  <h2>How DropBeam works</h2>
+  <p>DropBeam is a Mac app that turns the computer into a local receiver. Click Start Receiving and it shows a QR code. Point the phone camera at it, a page opens in the phone browser, pick your files, done: they land in the folder you chose. There is nothing to install on the phone, no account to create, and no cloud in the middle. It works from Android and iPhone alike, because every phone has a camera and a browser.</p>
+  <p>Transfers are free and unlimited, including multi-gigabyte videos, which arrive at full quality with their original timestamps.</p>
+  <p>The paid tier (one time, no subscription) is for what happens on arrival: photos renamed by the date they were taken, HEIC converted to universal JPEG, duplicates skipped automatically, GPS location stripped if you want it gone, and sending files from the Mac back to the phone. You can try every Pro feature free on your first 10 files.</p>
+
+  <div class="callout">
+    <p><strong>Try DropBeam free.</strong> Unlimited transfers, nothing to install on the phone, on the Mac App Store.</p>
+    <p><a class="btn" href="https://apps.apple.com/app/id6780014112">Get DropBeam</a></p>
+  </div>
+
+  <h2>Which should you pick?</h2>
+  <p>Moving your entire camera roll once, with tens of thousands of photos: use a cable and OpenMTP, and budget an afternoon. Sending yourself photos, videos, and documents regularly: local Wi-Fi transfer wins on every axis that matters, and you will stop thinking about it entirely.</p>
+</article>
+</div>
+
+<footer>
+  <p><a href="./">DropBeam home</a> &middot;
+  <a href="support.html">Support</a> &middot;
+  <a href="privacy.html">Privacy</a> &middot;
+  <a href="terms.html">Terms</a></p>
+  <p>&copy; 2026 DropBeam</p>
+</footer>
+
+</body></html>

@@ -1,29 +1,183 @@
 <!doctype html>
 <html lang="en"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>DropBeam</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DropBeam - Phone to Mac file transfer over Wi-Fi, no app on the phone</title>
+<meta name="description" content="Send photos, videos, and files from any phone to your Mac over your own Wi-Fi. Scan a QR code, nothing to install on the phone, no account, no cloud. Free and unlimited. On the Mac App Store.">
+<meta property="og:title" content="DropBeam - Phone to Mac file transfer over Wi-Fi">
+<meta property="og:description" content="Scan a QR with any phone and send files straight to your Mac. Nothing to install on the phone, no account, no cloud.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://shveatamishra-rgb.github.io/dropbeam/">
 <style>
-:root{--ink:#0d0d10;--card:#16161b;--gold:#d8b04d;--text:#e9e7e2;--muted:#9a978f}
+:root{--ink:#0d0d10;--ink2:#131013;--card:#16161b;--line:#24242c;--gold:#d8b04d;--gold2:#e7c877;--text:#e9e7e2;--muted:#9a978f}
 *{box-sizing:border-box}
-body{margin:0;background:var(--ink);color:var(--text);font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
-.wrap{max-width:640px;margin:0 auto;padding:64px 24px 80px}
-.brand{display:flex;align-items:center;gap:12px;margin-bottom:10px}
-.logo{width:44px;height:44px;border-radius:11px;background:linear-gradient(160deg,#23232a,#0e0e12);display:flex;align-items:center;justify-content:center;color:var(--gold);font-weight:800;font-size:20px}
-h1{font-size:30px;margin:6px 0 2px}
-.tag{color:var(--muted);margin-top:0}
-ul{list-style:none;padding:0;margin-top:2em}
-li{margin:12px 0}
-a{color:var(--gold);font-size:18px}
-.muted{color:var(--muted);font-size:14px}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--ink);color:var(--text);font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--gold);text-decoration:none}
+a:hover{color:var(--gold2)}
+img{max-width:100%;display:block}
+.wrap{max-width:1000px;margin:0 auto;padding:0 24px}
+header{display:flex;align-items:center;justify-content:space-between;padding:22px 24px;max-width:1000px;margin:0 auto}
+.brand{display:flex;align-items:center;gap:11px;font-weight:700;font-size:19px;color:var(--text)}
+.logo{width:38px;height:38px;border-radius:10px;background:linear-gradient(160deg,#23232a,#0e0e12);display:flex;align-items:center;justify-content:center;color:var(--gold);font-weight:800;font-size:18px;border:1px solid var(--line)}
+.btn{display:inline-block;background:var(--gold);color:#1a1406;font-weight:700;padding:12px 22px;border-radius:11px;font-size:15px;border:1px solid transparent;transition:transform .12s ease,background .12s ease}
+.btn:hover{background:var(--gold2);color:#1a1406;transform:translateY(-1px)}
+.btn.ghost{background:transparent;color:var(--text);border-color:var(--line)}
+.btn.ghost:hover{border-color:var(--gold);color:var(--gold)}
+/* hero */
+.hero{text-align:center;padding:40px 0 20px;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;left:50%;top:8%;width:900px;height:520px;transform:translateX(-50%);background:radial-gradient(closest-side,rgba(216,176,77,.16),rgba(216,176,77,0));pointer-events:none}
+.hero h1{font-size:clamp(32px,6vw,56px);line-height:1.08;margin:14px 0 12px;letter-spacing:-.5px}
+.hero p.sub{color:var(--muted);font-size:clamp(16px,2.4vw,21px);max-width:640px;margin:0 auto 26px}
+.cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.pill{display:inline-block;font-size:13px;color:var(--gold);border:1px solid var(--line);background:rgba(216,176,77,.06);padding:6px 14px;border-radius:999px;letter-spacing:.3px}
+.shot{margin:40px auto 0;max-width:900px;border-radius:16px;border:1px solid var(--line);box-shadow:0 30px 80px rgba(0,0,0,.55);overflow:hidden}
+/* sections */
+section{padding:54px 0}
+.band{background:var(--ink2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+h2{font-size:clamp(24px,3.4vw,34px);letter-spacing:-.3px;margin:0 0 10px;text-align:center}
+.lead{color:var(--muted);text-align:center;max-width:680px;margin:0 auto 8px;font-size:17px}
+.grid{display:grid;gap:18px;margin-top:36px}
+.cols-3{grid-template-columns:repeat(3,1fr)}
+.cols-2{grid-template-columns:repeat(2,1fr)}
+.step{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px}
+.step .n{width:30px;height:30px;border-radius:8px;background:rgba(216,176,77,.12);color:var(--gold);font-weight:700;display:flex;align-items:center;justify-content:center;margin-bottom:12px}
+.step h3{margin:0 0 6px;font-size:18px}
+.step p{margin:0;color:var(--muted);font-size:15px}
+/* free vs pro */
+.plan{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px}
+.plan.pro{border-color:rgba(216,176,77,.4)}
+.plan h3{margin:0 0 4px;font-size:20px;display:flex;align-items:center;gap:10px}
+.tagpro{font-size:11px;font-weight:800;letter-spacing:.5px;color:#1a1406;background:var(--gold);padding:3px 8px;border-radius:6px}
+.price{color:var(--muted);font-size:14px;margin:0 0 16px}
+.plan ul{list-style:none;padding:0;margin:0}
+.plan li{padding:8px 0 8px 26px;position:relative;font-size:15px;border-top:1px solid var(--line)}
+.plan li:first-child{border-top:none}
+.plan li::before{content:"";position:absolute;left:2px;top:14px;width:8px;height:8px;border-radius:50%;background:var(--gold)}
+.trial{text-align:center;color:var(--muted);font-size:15px;margin-top:22px}
+/* split feature */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.split img{border-radius:16px;border:1px solid var(--line)}
+.split h2{text-align:left}
+.split .lead{text-align:left;margin-left:0}
+/* footer */
+footer{border-top:1px solid var(--line);padding:34px 24px 48px;text-align:center;color:var(--muted);font-size:14px}
+footer a{margin:0 10px}
+.aft{text-align:center}
+.aft a.btn{margin-top:6px}
+@media(max-width:760px){
+  .cols-3,.cols-2,.split{grid-template-columns:1fr}
+  .split{gap:24px}
+  header{padding:16px}
+}
 </style></head>
-<body><div class="wrap">
-<div class="brand"><div class="logo">&#8645;</div></div>
-<h1>DropBeam</h1>
-<p class="tag">Send files between any phone and your Mac over your own Wi-Fi. Scan a QR code, no app on the phone, nothing leaves your network. On the Mac App Store.</p>
-<ul>
-  <li><a href="./support.html">Support and contact</a></li>
-  <li><a href="./privacy.html">Privacy Policy</a></li>
-  <li><a href="./terms.html">Terms of Use</a></li>
-</ul>
-<p class="muted">&copy; 2026 DropBeam</p>
-</div></body></html>
+<body>
+
+<header>
+  <div class="brand"><span class="logo">&#8645;</span> DropBeam</div>
+  <a class="btn" href="https://apps.apple.com/app/id6780014112">Get it on the Mac App Store</a>
+</header>
+
+<div class="wrap">
+  <div class="hero">
+    <span class="pill">Free and unlimited &middot; No account &middot; No cloud</span>
+    <h1>From phone to computer in seconds</h1>
+    <p class="sub">Send photos, videos, and files from any phone to your Mac over your own Wi-Fi. Scan a QR code and go. There is nothing to install on the phone.</p>
+    <div class="cta-row">
+      <a class="btn" href="https://apps.apple.com/app/id6780014112">Get it on the Mac App Store</a>
+      <a class="btn ghost" href="#how">See how it works</a>
+    </div>
+    <div class="shot"><img src="img/app.png" alt="DropBeam on a Mac showing the QR code and saving options"></div>
+  </div>
+</div>
+
+<section class="band">
+  <div class="wrap">
+    <h2>Nothing to install on the phone</h2>
+    <p class="lead">Most transfer tools make you install an app on both devices. DropBeam doesn't. Your phone already has the only thing it needs: a camera and a browser. That means it works on a borrowed phone, a guest's phone, or a locked-down work phone too. Just scan and send.</p>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <h2>How it works</h2>
+    <p class="lead">Three steps, and you never touch an app store on the phone.</p>
+    <div class="grid cols-3">
+      <div class="step"><div class="n">1</div><h3>Start receiving</h3><p>Open DropBeam on your Mac and it shows a QR code, from the window or straight from the menu bar.</p></div>
+      <div class="step"><div class="n">2</div><h3>Scan with any phone</h3><p>Point the phone camera at the code. A page opens in the phone's browser. Android or iPhone, both work.</p></div>
+      <div class="step"><div class="n">3</div><h3>Pick your files</h3><p>Choose photos, videos, anything. They land straight in the folder you chose on the Mac, full size.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <div class="split">
+      <img src="img/phone.jpg" alt="The DropBeam upload page open in a phone browser">
+      <div>
+        <h2>The phone just uses its browser</h2>
+        <p class="lead">No download, no sign in, no permissions to grant. The page opens, you pick files, and they beam over your local Wi-Fi. Big videos arrive exactly as recorded, with their original dates intact and nothing recompressed.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Free forever, Pro when you want it</h2>
+    <p class="lead">Receiving is free and unlimited. Pro adds the organizing, as a one-time purchase. No subscription.</p>
+    <div class="grid cols-2">
+      <div class="plan">
+        <h3>Free</h3>
+        <p class="price">Unlimited, forever</p>
+        <ul>
+          <li>Unlimited transfers of any file, any size</li>
+          <li>Nothing to install on the phone</li>
+          <li>Menu bar mode, one click to receive</li>
+          <li>Beam text and links to your Mac clipboard</li>
+          <li>Access code security</li>
+        </ul>
+      </div>
+      <div class="plan pro">
+        <h3>DropBeam Pro <span class="tagpro">ONE TIME</span></h3>
+        <p class="price">$9.99 once. Yours forever.</p>
+        <ul>
+          <li>Rename on save by date taken, plus a label</li>
+          <li>Convert HEIC photos to universal JPEG</li>
+          <li>Skip duplicates you already have</li>
+          <li>Remove GPS location from photos</li>
+          <li>Set file dates to the capture date</li>
+          <li>Send files from the Mac back to the phone</li>
+        </ul>
+      </div>
+    </div>
+    <p class="trial">Try every Pro feature free on your first 10 files.</p>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <h2>Private by design</h2>
+    <p class="lead">Files travel directly between your devices over your own Wi-Fi. DropBeam has no servers, no accounts, and collects no data. When a transfer finishes, your files exist in exactly two places: the phone and your Mac.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap aft">
+    <h2>Lost Android File Transfer?</h2>
+    <p class="lead">Google discontinued its Mac transfer tool and never replaced it. Here is what actually works now.</p>
+    <a class="btn ghost" href="android-file-transfer-alternative.html">Read: the Android File Transfer alternative for Mac</a>
+  </div>
+</section>
+
+<footer>
+  <p><a class="btn" href="https://apps.apple.com/app/id6780014112">Get DropBeam on the Mac App Store</a></p>
+  <p style="margin-top:22px">
+    <a href="support.html">Support and contact</a> &middot;
+    <a href="privacy.html">Privacy Policy</a> &middot;
+    <a href="terms.html">Terms of Use</a>
+  </p>
+  <p>&copy; 2026 DropBeam</p>
+</footer>
+
+</body></html>
